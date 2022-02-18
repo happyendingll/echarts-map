@@ -17,9 +17,9 @@ body{
     position: absolute;
     width: 90%;
     height: 80vh;
-    left:5%;
+    /*left:5%;*/
     top:10%;
-    background-color:rgba(24,27,52,0.62);
+    /*background-color:rgba(24,27,52,0.62);*/
 }
 
 .chart{
@@ -44,8 +44,8 @@ body{
     right: 5%;
     display: block;
     border: 2px solid #262A53;
-    
-    
+
+
 }
 .myBlog a{
     text-decoration: none;

@@ -15,7 +15,9 @@
   <body>
 
     <div class='title'>Echarts中国地图三级钻取</div>
-    <div class="box">
+    <div id="dashboard" style="width: 600px;height: 400px;float: left"></div>
+    <div id="chartDom" style="width: 600px;height: 400px;float: right"></div>
+    <div class="box" style="width: 1000px;margin-left: 400px">
       <button class= "backBtn" onclick="back()">返回上级</button>
       <div id="mapChart" class="chart"></div>
     </div>
@@ -28,16 +30,114 @@
     <div class='bottom'>
         <a href="https://github.com/dongkelun/echarts-map" target="_blank" title="点我查看源码">
           <svg height="26"  viewBox="0 0 16 16" version="1.1" width="26" aria-hidden="true">
-              <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 
-                    7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 
-                    1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 
-                    1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 
+              <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47
+                    7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72
+                    1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18
+                    1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54
                     1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z">
               </path>
             </svg>
         </a>
-        
+
     </div>
   </body>
-  
+  <script type="text/javascript">
+    var chartDom = document.getElementById('dashboard');
+    var myChart = echarts.init(chartDom);
+    var option;
+
+    option = {
+      series: [
+        {
+          type: 'gauge',
+          axisLine: {
+            lineStyle: {
+              width: 30,
+              color: [
+                [0.3, '#67e0e3'],
+                [0.7, '#37a2da'],
+                [1, '#fd666d']
+              ]
+            }
+          },
+          pointer: {
+            itemStyle: {
+              color: 'auto'
+            }
+          },
+          axisTick: {
+            distance: -30,
+            length: 8,
+            lineStyle: {
+              color: '#fff',
+              width: 2
+            }
+          },
+          splitLine: {
+            distance: -30,
+            length: 30,
+            lineStyle: {
+              color: '#fff',
+              width: 4
+            }
+          },
+          axisLabel: {
+            color: 'auto',
+            distance: 40,
+            fontSize: 20
+          },
+          detail: {
+            valueAnimation: true,
+            formatter: '{value} km/h',
+            color: 'auto'
+          },
+          data: [
+            {
+              value: 70
+            }
+          ]
+        }
+      ]
+    };
+    setInterval(function () {
+      myChart.setOption({
+        series: [
+          {
+            data: [
+              {
+                value: +(Math.random() * 100).toFixed(2)
+              }
+            ]
+          }
+        ]
+      });
+    }, 2000);
+    option && myChart.setOption(option);
+  </script>
+<script type="text/javascript">
+  var chartDom = document.getElementById('chartDom');
+  var myChart = echarts.init(chartDom);
+  var option;
+
+  option = {
+    legend: {},
+    tooltip: {},
+    dataset: {
+      source: [
+        ['product', '2015', '2016', '2017'],
+        ['Matcha Latte', 43.3, 85.8, 93.7],
+        ['Milk Tea', 83.1, 73.4, 55.1],
+        ['Cheese Cocoa', 86.4, 65.2, 82.5],
+        ['Walnut Brownie', 72.4, 53.9, 39.1]
+      ]
+    },
+    xAxis: { type: 'category' },
+    yAxis: {},
+    // Declare several bar series, each will be mapped
+    // to a column of dataset.source by default.
+    series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }]
+  };
+
+  option && myChart.setOption(option);
+</script>
 </html>

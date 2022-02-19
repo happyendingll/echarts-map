@@ -13,10 +13,13 @@
     <script type="text/javascript" src="./js/rem.js"></script>
   </head>
   <body>
-
-    <div class='title'>Echarts中国地图三级钻取</div>
-    <div id="dashboard" style="width: 600px;height: 400px;float: left"></div>
-    <div id="chartDom" style="width: 600px;height: 400px;float: right"></div>
+  <div class='title'>Echarts中国地图三级钻取</div>
+  <div id="particles-js"></div>
+  <script type="text/javascript" src="./js/particles.js"></script>
+  <script type="text/javascript" src="./js/app.js"></script>
+  <script type="text/javascript" src="./js/stats.js"></script>
+    <div id="dashboard" style="position:absolute;width: 600px;height: 400px;top: 10%;left: 0"></div>
+    <div id="chartDom" style="position:absolute;width: 600px;height: 400px;top: 10%;right: 0"></div>
     <div class="box" style="width: 1000px;margin-left: 400px">
       <button class= "backBtn" onclick="back()">返回上级</button>
       <div id="mapChart" class="chart"></div>
